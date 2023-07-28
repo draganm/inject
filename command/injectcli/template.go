@@ -1,8 +1,6 @@
 package injectcli
 
 import (
-	_ "embed"
-
 	"github.com/urfave/cli/v2"
 )
 
