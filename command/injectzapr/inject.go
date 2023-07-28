@@ -1,6 +1,7 @@
 package injectzapr
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"os"
@@ -66,8 +67,16 @@ var Command = &cli.Command{
 
 		f.Imports = append(f.Imports, tf.Imports...)
 
-		return decorator.Fprint(os.Stdout, f)
-		return nil
+		bb := &bytes.Buffer{}
+
+		err = decorator.Fprint(bb, tf)
+
+		if err != nil {
+			return fmt.Errorf("could not serialize source: %w", err)
+		}
+
+		return os.WriteFile("main.go", bb.Bytes(), 0700)
+
 	},
 }
 
