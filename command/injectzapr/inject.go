@@ -69,7 +69,7 @@ var Command = &cli.Command{
 
 		bb := &bytes.Buffer{}
 
-		err = decorator.Fprint(bb, tf)
+		err = decorator.Fprint(bb, f)
 
 		if err != nil {
 			return fmt.Errorf("could not serialize source: %w", err)
